@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="https://i.ibb.co/kxWYk3Q/LOGO.png" type="image/x-icon"/>
+    <title>Roteador</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://i.ibb.co/kxWYk3Q/LOGO.png">
+                </a>
+            </div>
+            <ul class="menu">
+                <button class="btn-custom" onclick="enviarRequisicao('1', 'Roteador')">Rodar Script</button>
+                <button class="btn-custom" onclick="enviarRequisicao('2', 'Roteador')">Fazer Backup</button>
+                <button class="btn-custom" onclick="enviarRequisicao('3', 'Roteador')">Criar Usuário</button>
+                <button class="btn-custom" onclick="enviarRequisicao('4', 'Roteador')">Configurações</button>
+                <button class="btn-custom" onclick="enviarRequisicao('5', 'Roteador')">Configurar Banner</button>
+            </ul>
+        </nav>
+        <div class="text-content">
+            <h2>Selecione a função de configuração do Roteador:</h2>
+            <p>ㅤ</p>
+            <p>"Automatizando a Eficiência: Gerenciamento Avançado de Equipamentos Cisco com Python e API"</p>
+            </div>
+            <div class="play-button">
+                <a scr="https://github.com/euumarcel0"></a>
+                <span class="play">GITHUB</span>
+                <i class="fas fa-play" onclick="redirectToGithub()"></i>
+            </div>
+            <script>
+                function getQueryParam(name) {
+                    var urlParams = new URLSearchParams(window.location.search);
+                    return urlParams.get(name);
+                }
+                function redirectToGithub() {
+                    window.location.href = "https://github.com/euumarcel0";
+                }
+                window.onload = function() {
+                    var equipamento = getQueryParam('equipamento');
+                    if (equipamento) {
+                        console.log("Configurando " + equipamento + "...");
+                    }
+                }
+                function enviarRequisicao(opcao, equipamento) {
+                fetch('/executar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        opcao: opcao,
+                        equipamento: equipamento
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    // Aqui você pode manipular a resposta, por exemplo, exibir uma mensagem de sucesso
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+    </script>
+    </header>
+</body>
+</html>
